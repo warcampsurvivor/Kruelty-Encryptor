@@ -18,7 +18,7 @@ import cv2
 
 # --- File & Crypto Constants ---
 CONFIG_FILE = "config.json"
-lic_ext = ".kruelkey"
+lic_ext = ".reclusekey"
 default_lic = f"master_key{lic_ext}"
 key_path = default_lic
 
@@ -490,7 +490,7 @@ class App(ctk.CTk):
         super().__init__()
         self.withdraw() 
 
-        self.title("Kruelty Encryptor v15")
+        self.title("Recluse Encryptor v15")
         
         self.win_width, self.win_height = 950, 900
         x_pos = (self.winfo_screenwidth() / 2) - (self.win_width / 2)
@@ -764,7 +764,7 @@ class App(ctk.CTk):
         if not key: return self.show_message("Warning", "The key is empty. Please enter or generate a key first.")
         phrase = self.get_pass("Set Encryption Passphrase", is_new=True)
         if not phrase: return self.show_status("Save operation cancelled.", color="orange")
-        path = filedialog.asksaveasfilename(defaultextension=lic_ext, initialfile=default_lic, filetypes=[("KruelKey Files", f"*{lic_ext}"), ("All files", "*.*")], title="Save Encrypted Key File")
+        path = filedialog.asksaveasfilename(defaultextension=lic_ext, initialfile=default_lic, filetypes=[("RecluseKey Files", f"*{lic_ext}"), ("All files", "*.*")], title="Save Encrypted Key File")
         if path:
             try: save_key(key, phrase, path); self.show_status(f"Key successfully saved to {os.path.basename(path)}")
             except Exception as e: self.show_message("Error", f"Failed to save the key: {e}")
@@ -772,7 +772,7 @@ class App(ctk.CTk):
     def load_key_file(self, use_dialog=True):
         path = key_path
         if use_dialog or not os.path.exists(path):
-            path = filedialog.askopenfilename(filetypes=[("KruelKey Files", f"*{lic_ext}"), ("All files", "*.*")], title="Open Encrypted Key File")
+            path = filedialog.askopenfilename(filetypes=[("RecluseKey Files", f"*{lic_ext}"), ("All files", "*.*")], title="Open Encrypted Key File")
         if not path:
             return self.show_status("Load operation cancelled.", color="orange")
         
@@ -914,4 +914,5 @@ def main():
     instance.mainloop()
 
 if __name__ == "__main__":
+
     main()
