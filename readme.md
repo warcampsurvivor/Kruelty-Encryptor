@@ -1,4 +1,4 @@
-# Kruelty Encryptor v15
+# Recluse Encryptor v15
 
 Kruelty Encryptor is a desktop application for Windows that provides strong, multi-layered encryption for text. It features a modern graphical user interface and an advanced steganography capability, allowing users to hide encrypted data securely within images.
 
@@ -64,4 +64,5 @@ python denver.py
 4.  Click `🔓 Paste & Decrypt`.
 
 5.  The application will automatically detect if the clipboard contains an image with data or encrypted text. The decrypted message will appear in the "Output" box.
+
 
