@@ -1,6 +1,6 @@
 # Recluse Encryptor v15
 
-Kruelty Encryptor is a desktop application for Windows that provides strong, multi-layered encryption for text. It features a modern graphical user interface and an advanced steganography capability, allowing users to hide encrypted data securely within images.
+Recluse Encryptor is a desktop application for Windows that provides strong, multi-layered encryption for text. It features a modern graphical user interface and an advanced steganography capability, allowing users to hide encrypted data securely within images.
 
 ![App Screenshot](https://cdn.discordapp.com/attachments/1276974120663388345/1408578235360481473/HeqwiYv.png?ex=68aa4035&is=68a8eeb5&hm=3cbd1fabeb42bbab348f659fae2cdc77243e14a29d9e39b63b08e322d60269c6&)  <!-- **Action:** Replace this with a URL to a screenshot of your app -->
 
@@ -10,7 +10,7 @@ Kruelty Encryptor is a desktop application for Windows that provides strong, mul
 -   **Strong Key Derivation:** Uses `scrypt` and `HKDF` to derive encryption keys from a user-provided passphrase, protecting against brute-force attacks.
 -   **Steganography:** Encrypt and hide your text data directly within image files (PNG, JPG, BMP) using a DCT (Discrete Cosine Transform) method.
 -   **Clipboard Integration:** Easily paste images from the clipboard to hide data in, or paste encrypted text/images to decrypt them. The encrypted result is automatically copied to your clipboard.
--   **Secure Key Storage:** Save and load your master keys to an encrypted `.kruelkey` file, protected by a separate passphrase.
+-   **Secure Key Storage:** Save and load your master keys to an encrypted `.reclusekey` file, protected by a separate passphrase.
 -   **Customizable UI:** Switch between a modern dark theme and a purple gradient theme.
 
 ## Installation
@@ -19,7 +19,7 @@ This application is designed for Windows. You will need Python 3 installed.
 
 **1. Clone the repository:**
 ```bash
-git clone https://github.com/warcampsurvivor/Kruelty-Encryptor.git
+git clone https://github.com/warcampsurvivor/Recluse-Encryptor.git
 cd your-repo-name
 ```
 
@@ -64,6 +64,7 @@ python denver.py
 4.  Click `🔓 Paste & Decrypt`.
 
 5.  The application will automatically detect if the clipboard contains an image with data or encrypted text. The decrypted message will appear in the "Output" box.
+
 
 
 
