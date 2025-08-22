@@ -2,7 +2,7 @@
 
 Kruelty Encryptor is a desktop application for Windows that provides strong, multi-layered encryption for text. It features a modern graphical user interface and an advanced steganography capability, allowing users to hide encrypted data securely within images.
 
-![App Screenshot](https://cdn.discordapp.com/attachments/1276974120663388345/1408573331015336169/wb3p572.png?ex=68aa3ba4&is=68a8ea24&hm=52ae865c90a831f978444ca24cf0e3acea3b236352fbe7b11531ddb8c28f2ce8&)  <!-- **Action:** Replace this with a URL to a screenshot of your app -->
+![App Screenshot](https://cdn.discordapp.com/attachments/1276974120663388345/1408578235360481473/HeqwiYv.png?ex=68aa4035&is=68a8eeb5&hm=3cbd1fabeb42bbab348f659fae2cdc77243e14a29d9e39b63b08e322d60269c6&)  <!-- **Action:** Replace this with a URL to a screenshot of your app -->
 
 ## Features
 
@@ -64,5 +64,6 @@ python denver.py
 4.  Click `🔓 Paste & Decrypt`.
 
 5.  The application will automatically detect if the clipboard contains an image with data or encrypted text. The decrypted message will appear in the "Output" box.
+
 
 
