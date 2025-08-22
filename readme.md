@@ -12,8 +12,6 @@ Kruelty Encryptor is a desktop application for Windows that provides strong, mul
 -   **Clipboard Integration:** Easily paste images from the clipboard to hide data in, or paste encrypted text/images to decrypt them. The encrypted result is automatically copied to your clipboard.
 -   **Secure Key Storage:** Save and load your master keys to an encrypted `.kruelkey` file, protected by a separate passphrase.
 -   **Customizable UI:** Switch between a modern dark theme and a purple gradient theme.
--   **License System:** The application includes a license verification system to manage access to different features (e.g., enabling steganography for 'admin' users).
-    *Note: For open-source use, you may want to modify or disable the licensing functions (`_fetch_remote_licenses`, `run_pre_checks`, etc.) to unlock all features for all users.*
 
 ## Installation
 
@@ -66,3 +64,4 @@ python denver.py
 4.  Click `🔓 Paste & Decrypt`.
 
 5.  The application will automatically detect if the clipboard contains an image with data or encrypted text. The decrypted message will appear in the "Output" box.
+
