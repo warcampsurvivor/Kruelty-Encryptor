@@ -40,9 +40,8 @@ lic_ver = "15"
 # Session cache
 pass_cache = {"passphrase": None}
 
-# --- Custom Context Menu ---
+# --- custom context menu ---
 class CustomContextMenu(ctk.CTkToplevel):
-    # --- START OF FIX: Themed Context Menu ---
     def __init__(self, master, theme_colors):
         super().__init__(master)
         self.overrideredirect(True)
@@ -70,7 +69,6 @@ class CustomContextMenu(ctk.CTkToplevel):
                             corner_radius=8, anchor="w",
                             command=lambda: self._do_command(command))
         btn.pack(fill="x", padx=5, pady=4)
-    # --- END OF FIX ---
 
     def _do_command(self, command):
         self.destroy()
@@ -81,7 +79,7 @@ class CustomContextMenu(ctk.CTkToplevel):
         self.geometry(f"+{x}+{y}")
         self.update_idletasks()
 
-# --- Custom Themed Dialogs ---
+# --- themed dialogs ---
 class CenteredToplevel(ctk.CTkToplevel):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -209,7 +207,7 @@ class CustomAskString(CustomDialog):
         self.result = None
         self.destroy()
 
-# --- Cryptographic Functions ---
+# --- cryptographic functions ---
 
 def is_weak(pw: str) -> bool:
     return len(pw) < 12 or pw.isalpha()
@@ -323,7 +321,7 @@ def load_key(phrase: str, path: str) -> str:
     with open(path, "r", encoding="utf-8") as f: data = f.read()
     return read_license(data, phrase)
 
-# --- DCT Steganography Core Functions ---
+# --- DCT core---
 
 def hide_data_dct(img: Image.Image, data: bytes) -> Image.Image:
     header = struct.pack('>I', len(data))
@@ -429,13 +427,12 @@ def paste_img() -> Image.Image:
         data = win32clipboard.GetClipboardData(win32clipboard.CF_DIB)
         if not data: raise ValueError("No image data on clipboard (CF_DIB format).")
         
-        # This is a hack to read DIB data, as Pillow doesn't do it directly.
-        # We prepend a BMP file header to the DIB data.
+        # prepend a BMP file header to the DIB data.
         info_header_size = struct.unpack_from("<I", data, 0)[0]
         file_header = b'BM' + struct.pack('<IHHI', 14 + len(data), 0, 0, 14 + info_header_size)
         return Image.open(io.BytesIO(file_header + data))
     except (TypeError, struct.error):
-        # Fallback for other image types on clipboard
+        # fallback for other image types on clipboard
         try:
             img = ImageGrab.grabclipboard()
             if isinstance(img, Image.Image):
@@ -556,9 +553,7 @@ class App(ctk.CTk):
         self.chip_frame = ctk.CTkFrame(self.main_frame, fg_color="transparent")
         self.chip_frame.grid(row=6, column=0, pady=5)
         
-        # --- START OF FIX: Perfect Circle Dot ---
         self.dot = ctk.CTkFrame(self.chip_frame, width=14, height=14, corner_radius=7)
-        # --- END OF FIX ---
         
         self.dot.pack(side="left", padx=(0, 6))
         self.img_name = ctk.CTkLabel(self.chip_frame, text="No Image Selected", fg_color="transparent")
@@ -585,10 +580,8 @@ class App(ctk.CTk):
         self.b_encrypt.pack(side="left", padx=10, pady=10)
         self.b_decrypt.pack(side="left", padx=10, pady=10)
         
-        # --- START OF FIX: Non-Jumping Log ---
         self.status = ctk.CTkLabel(self.main_frame, text="", font=("Segoe UI", 12), fg_color="transparent")
         self.status.grid(row=12, column=0, padx=20, pady=(0, 10), sticky="w")
-        # --- END OF FIX ---
         
         self.all_buttons = [self.b_rand_key, self.b_save_key, self.b_load_key, self.b_rekey, self.b_pick_file, self.b_pick_folder, self.b_paste_img, self.b_encrypt, self.b_decrypt, self.b_clear_img]
         self.folder, self.file, self.pasted = None, None, None
@@ -666,7 +659,6 @@ class App(ctk.CTk):
         ask_dialog = CustomAskString(master=self, title=title, text=text, theme_colors=theme_colors, show=show)
         return ask_dialog.wait()
 
-    # --- START OF FIX: Non-Jumping Log ---
     def show_status(self, msg: str, color="green"):
         theme_name = self.theme_var.get()
         if color == "green": text_color = "#39FF14" if theme_name in ["dark", "purple_gradient"] else "green"
@@ -674,9 +666,8 @@ class App(ctk.CTk):
         else: text_color = color
         
         self.status.configure(text=msg, text_color=text_color)
-        # Clear the text after 4 seconds instead of removing the widget
+        # Clear the text after 4 seconds
         self.after(4000, lambda: self.status.configure(text=""))
-    # --- END OF FIX ---
     
     def on_theme_change(self):
         self._set_theme()
@@ -879,7 +870,7 @@ class App(ctk.CTk):
         pw = self.pw_box.get().strip()
         if not pw: return self.show_message("Warning", "Please enter the master key to decrypt.")
         
-        # First, try to decrypt from an image on the clipboard
+        # try to decrypt from an image on the clipboard
         try:
             img = paste_img()
             pt = decrypt_with_pass(find_data_dct(img), pw)
@@ -887,13 +878,13 @@ class App(ctk.CTk):
             self.show_status("Successfully decrypted from clipboard image.")
             return
         except (ValueError, TypeError, struct.error) as e:
-            # If there's no image or it fails, we don't show an error yet.
-            # We just proceed to check for text. We only show an error if it's
+            # if there's no image or it fails, we don't show an error yet.
+            # just proceed to check for text. We only show an error if it's
             # a real image processing error, not just a lack of image.
             if "No image data on clipboard" not in str(e) and "not a valid image" not in str(e):
                 return self.show_message("Decryption Error", f"Failed to process clipboard image:\n\n{e}")
 
-        # If image decryption fails or there is no image, try text
+        # if image decryption fails or there is no image try text
         try: token = self.clipboard_get().strip()
         except tk.TclError: token = self.in_box.get("1.0", tk.END).strip()
 
@@ -916,3 +907,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
