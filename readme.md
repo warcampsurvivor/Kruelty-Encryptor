@@ -25,20 +25,7 @@ git clone https://github.com/warcampsurvivor/Kruelty-Encryptor.git
 cd your-repo-name
 ```
 
-**2. Create a Virtual Environment:**
-It's highly recommended to use a virtual environment to manage project dependencies.
-```bash
-# Create the environment
-python -m venv venv
-
-# Activate it
-# On Windows:
-venv\Scripts\activate
-# On macOS/Linux:
-# source venv/bin/activate
-```
-
-**3. Install Dependencies:**
+**2. Install Dependencies:**
 Install all the required libraries from the `requirements.txt` file.
 ```bash
 pip install -r requirements.txt
@@ -77,4 +64,5 @@ python denver.py
 2.  **For Text:** Paste the encrypted text into the "Input" box or have it on your clipboard.
 3.  **For Images:** Copy the image containing the hidden data to your clipboard.
 4.  Click `🔓 Paste & Decrypt`.
+
 5.  The application will automatically detect if the clipboard contains an image with data or encrypted text. The decrypted message will appear in the "Output" box.
