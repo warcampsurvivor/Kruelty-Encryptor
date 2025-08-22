@@ -1,0 +1,8 @@
+customtkinter
+pycryptodome
+cryptography
+Pillow
+pywin32
+Hkdf
+numpy
+opencv-python
