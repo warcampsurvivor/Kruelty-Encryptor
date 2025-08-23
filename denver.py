@@ -1,5 +1,3 @@
-# denver.py
-
 import tkinter as tk
 from tkinter import filedialog
 import customtkinter as ctk
@@ -12,17 +10,16 @@ from PIL import Image
 import win32clipboard
 from hkdf import Hkdf
 
-# DCT Steganography Dependencies
+# DCT dependencies
 import numpy as np
 import cv2
 
-# --- File & Crypto Constants ---
+# --- file and crypto constants ---
 CONFIG_FILE = "config.json"
 lic_ext = ".reclusekey"
 default_lic = f"master_key{lic_ext}"
 key_path = default_lic
 
-# Salts and Nonces
 salt_len = 16
 chacha_nonce_len = 12
 aes_nonce_len = 16
@@ -30,14 +27,13 @@ tag_len = 16
 fernet_salt_len = 16
 hkdf_salt_len = 16
 
-# License File Structure
 magic_begin = "-----BEGIN LICENSE-----"
 magic_sentinel = "LICENSING-V15"
 magic_end = "-----END LICENSE-----"
 magic_footer = "# magic"
 lic_ver = "15"
 
-# Session cache
+# session cache
 pass_cache = {"passphrase": None}
 
 # --- custom context menu ---
@@ -48,7 +44,7 @@ class CustomContextMenu(ctk.CTkToplevel):
         self.lift()
         self.grab_set()
 
-        # Dynamically set colors from the theme dictionary
+        # dynamically set colors from the theme dictionary
         bg_color = theme_colors.get("dialog_fg", "#1A102B")
         self.hover_color = theme_colors.get("button_hover", "#432D6D")
         self.text_color = theme_colors.get("text_color", "#E0E0E0")
@@ -63,7 +59,7 @@ class CustomContextMenu(ctk.CTkToplevel):
         self.main_frame.pack(expand=True, fill="both")
 
     def add_command(self, label, command):
-        # Use themed colors for the buttons
+        # use themed colors for the buttons
         btn = ctk.CTkButton(self.main_frame, text=label, fg_color="transparent",
                             hover_color=self.hover_color, text_color=self.text_color,
                             corner_radius=8, anchor="w",
@@ -907,4 +903,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
